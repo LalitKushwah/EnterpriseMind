@@ -1,0 +1,21 @@
+.container {
+  text-align: center;
+  margin: 10%;
+}
+button {
+  margin-left: 10px;  
+  color:white
+}
+.add-todo {
+  background-color: green;
+  font-size: 1rem;
+}
+.delete-button {
+  background-color: red;
+}
+li {
+  margin: 10px;
+}
+ul {
+  list-style: none;
+}
