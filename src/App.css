@@ -27,3 +27,9 @@ tr:hover {
   background-color: #f7f4f4;
 }
 
+@media only screen and (max-width: 400px) {
+  .container {
+    margin-top: 27%;
+  }
+}
+

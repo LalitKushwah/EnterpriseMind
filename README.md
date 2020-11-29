@@ -1,15 +1,14 @@
 ## What could be improved:
-    - Unit test cases
-    - Contants should be defined at central place
-    - Internationalization/Localization is missing
-    - Global Error Handler should be implemented, although I tried to minimize exceptions impact by using try/catch
-    - Request and Response interceptor should be there
-    - UI Responsiveness
+- Unit test cases
+- Contants should be defined at central place
+- Internationalization/Localization is missing
+- Global Error Handler should be implemented, although I tried to minimize exceptions impact by using try/catch
+- Request and Response interceptor should be there
+- UI Responsiveness
 
 ## Concepts I have not used and Why
  - Redux : For the scope of assignment I felt that redux is not necessary here
  - Context: Application/Assignment doesn't has many components (which are being used in nested children fashin) so context api doesn't fit in here
-
 
 
 ## Build Steps:
