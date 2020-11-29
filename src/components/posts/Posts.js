@@ -1,24 +1,24 @@
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import SinglePost from './SinglePost';
 import CustomLoader from '../../Shared/Loader';
 
 function Posts() {
 
-    let [posts, setPosts] = React.useState([]);
-    let [flag, setFlag] = React.useState(false);
+    const [posts, setPosts] = useState([]);
+    const [flag, setFlag] = useState(false);
 
-    React.useEffect(() => {
-        async function getList() {
-            try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-                const items = await response.json();
-                console.log(items);
-                setPosts(items);
-                setFlag(true);
-            } catch (exception) {
-                console.error(exception)
-            }
+    async function getList() {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`);
+            const items = await response.json();
+            setPosts(items);
+            setFlag(true);
+        } catch (exception) {
+            console.error(exception)
         }
+    }
+
+    useEffect(() => {
         getList();
     }, []);
 
@@ -35,9 +35,9 @@ function Posts() {
                     </thead>
                     <tbody>
                         {
-                            posts.map(item => {
+                            posts.map((item, index) => {
                                 return (
-                                    <SinglePost title={item.title} userId={item.userId} body={item.body} id={item.id}></SinglePost>
+                                    <SinglePost title={item.title} userId={item.userId} body={item.body} id={item.id} key={index}></SinglePost>
                                 )
                             })
                         }

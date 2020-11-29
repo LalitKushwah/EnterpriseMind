@@ -1,28 +1,17 @@
 import React from 'react';
 import './App.css';
-import AppHeader from './AppHeader';
+import AppHeader from './Shared/AppHeader';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Posts from './components/posts/Posts';
 import SinglePost from './components/posts/SinglePost';
-import UserProfile from './UserProfile';
-import PostDetail from './components/posts/post-details';
+import UserProfile from './components/user/UserProfile';
+import PostDetail from './components/posts/PostDetails';
 
 
-export default class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      todoText: "",
-      list: []
-    };
-  }
-
-
-  render() {
+function App() {
     return (
       <Router>
-        <AppHeader></AppHeader>
+        <AppHeader title="Enterprise Minds Forum"></AppHeader>
         <Switch>
           <Route path="/" exact component={Posts}></Route>
           <Route path="/post/:id" exact component={PostDetail}></Route>
@@ -32,6 +21,6 @@ export default class App extends React.Component {
         </Switch>
       </Router>
     )
-  }
-
 }
+
+export default App;

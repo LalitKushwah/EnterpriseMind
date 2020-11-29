@@ -1,30 +1,54 @@
 import './PostDetail.css';
 import React from 'react';
-
+import CustomLoader from '../../Shared/Loader';
+import { useParams } from 'react-router';
 
 function PostDetail(props) {
-    let [detail, setDetail] = React.useState([]);
-    let [comments, setComment] = React.useState([]);
+    const style = {
+        marginTop: '10%'
+    }
+    const { id } = useParams();
 
-    React.useEffect(() => {
-        async function getDetail() {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${props.match.params.id}`);
+    const [detail, setDetail] = React.useState([]);
+    const [comments, setComment] = React.useState([]);
+    const [flag, setFlag] = React.useState(false);
+
+
+    // fetch posts detail using post id
+    const getDetail = async () =>  {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}`);
             const detail = await response.json();
-            console.log(detail);
             setDetail(detail);
-        }
-        getDetail();
+        } catch (err) {
 
-        async function getComments() {
-            const res = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${props.match.params.id}`);
+        }
+    }
+    
+    // fetch associated posts comment using post id
+    const getComments = async () => {
+        try {
+            const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/comments?postId=${id}`);
             const comments = await res.json();
             setComment(comments);
-        }
-        getComments();
+        } catch (err) {
 
-    }, []);
-    return (
-        <div className="post-detail-container container">
+        }
+    }
+
+    React.useEffect(() => {
+        // Get all data from server then stop loading and update state accordingly
+        Promise.all([getDetail(), getComments()])
+            .then(() => {
+                setFlag(true)
+            }).catch(err => {
+                console.error('Error while fecthing data', err);
+            })
+    });
+
+    const renderMarkup = () => {
+        return (
+            <div className="post-detail-container container">            
             <h2 className="text-center">{detail.title}</h2>
             <h6>{detail.body}</h6>
             <hr />
@@ -32,7 +56,7 @@ function PostDetail(props) {
             {
                 comments.map((item, index) => {
                     return (
-                        <div className="content">
+                        <div className="content" key={index}>
                             <h6><svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
                                 <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -50,7 +74,13 @@ function PostDetail(props) {
                 })
             }
         </div>
+        )
+    }
+
+    return (
+        flag ? renderMarkup() : <div style={style}><CustomLoader/></div>
     );
 }
+
 
 export default PostDetail;
