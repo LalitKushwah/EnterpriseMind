@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import './AppHeader';
 import AppHeader from './AppHeader';
-import SinglePost from './SinglePost';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Posts from './Posts';
+import Posts from './components/posts/Posts';
+import SinglePost from './components/posts/SinglePost';
 import UserProfile from './UserProfile';
-import PostDetail from './post-details';
+import PostDetail from './components/posts/post-details';
 
 
 export default class App extends React.Component {
