@@ -1,3 +1,8 @@
-.user-profile {
-    margin-top: 10%;
-}   
+.card {
+    margin-top: 9%;
+    width: 40%;
+}
+
+.card-body {
+    text-align: center;
+}

@@ -1,3 +1,21 @@
 .post-detail-container {
     margin-top: 10%;
 }
+.content {
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 17px;
+}
+
+h3 {
+    color:#949494;
+}
+
+svg {
+    margin-right: 5px;
+    margin-top: -2px;
+}
+
+.comment {
+    line-height: 2;
+    margin-top: 10px;
+}

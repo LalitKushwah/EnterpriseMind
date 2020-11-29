@@ -20,15 +20,23 @@ function Posts () {
 
     return (
         <div className="container">
+            <table className="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Post</th>
+                    <th scope="col">Creator</th>
+                </tr>
+            </thead>
+            <tbody>
             {
                 posts.map(item => {
                     return (
-                        <Link to={`/post/${item.id}`} key={item.title}>
-                            <SinglePost title={item.title} userId={item.userId}></SinglePost>
-                        </Link>
+                        <SinglePost title={item.title} userId={item.userId} body={item.body} id={item.id}></SinglePost>
                     )
                 })
             }
+             </tbody>
+            </table>
         </div>
     )
 }

@@ -1,3 +1,19 @@
 .row {
     margin: 20px;
 }
+
+h4 {
+    color: #000000
+}
+
+p {
+    color: #646464;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.media-object {
+    height: 38px;
+}
