@@ -4,6 +4,7 @@
     - Internationalization/Localization is missing
     - Global Error Handler should be implemented, although I tried to minimize exceptions impact by using try/catch
     - Request and Response interceptor should be there
+    - UI Responsiveness
 
 ## Concepts I have not used and Why
  - Redux : For the scope of assignment I felt that redux is not necessary here
